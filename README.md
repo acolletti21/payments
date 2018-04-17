@@ -1,17 +1,19 @@
-###Usage
-(I will use 1 as the loan id example since that is what's seeded already)
+### Usage
+(I will use 1 as the loan_id example since that is what's seeded already)
 
-#####To create a payment
+##### To create a payment
 POST to localhost:3000/payments
+
+
 required keys: payment_amount, loan_id
 
-#####To view your new loan balance
+##### To view your new loan balance
 navigate to http://localhost:3000/loans/1
 
-#####To view all payments on your loan
+##### To view all payments on your loan
 navigate to http://localhost:3000/payments?loan_id=1
 
-#####To view an individual payment
+##### To view an individual payment
 navigate to http://localhost:3000/payments/yourPaymentID
 
 # Payments Exercise
