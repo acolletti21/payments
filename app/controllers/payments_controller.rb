@@ -1,6 +1,11 @@
 class PaymentsController < ApplicationController
   after_action :update_funded_amount, only: :create
 
+  def index
+    @loan = Loan.find(params[:loan_id])
+    render json: Payment.all
+  end
+
   def create
     @loan = Loan.find(params[:loan_id])
     @payment = Payment.new(
