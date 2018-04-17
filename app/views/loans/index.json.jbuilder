@@ -1,0 +1,1 @@
+json.partial! @loans, partial: 'loan', as: :loan
