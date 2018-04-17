@@ -1,4 +1,6 @@
 class PaymentsController < ApplicationController
+  after_action :update_funded_amount, only: :create
+
   def create
     @loan = Loan.find(params[:loan_id])
     @payment = Payment.new(
@@ -7,6 +9,7 @@ class PaymentsController < ApplicationController
                                 )
     if (params[:payment_amount]).to_i <= @loan.funded_amount.to_i
         @payment.save
+        # update_funded_amount
         render :show
     else
       render json: {message: "Your Payment Exceeds the Balance Due"} 
@@ -17,4 +20,12 @@ class PaymentsController < ApplicationController
   def show
     render json: Payment.find(params[:id])
   end
+
+  private
+
+  def update_funded_amount
+    @new_amount = @loan.funded_amount - @payment.payment_amount
+    p @new_amount
+    @loan.update(funded_amount: @new_amount)
+  end  
 end
